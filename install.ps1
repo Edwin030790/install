@@ -1,4 +1,4 @@
-$servername = AZR-EdwinTestVM
+$servername = "AZR-EdwinTestVM"
 
 
 
@@ -36,7 +36,5 @@ Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'E:'" | Set-CimIn
 
 #Adds Server to Domain
 Add-Computer -DomainName infinite.local -Credential $Cred
-
-
 
 
