@@ -2,9 +2,9 @@ $servername = "AZR-EdwinTestVM"
 
 
 
-$username = $AdmincredsUserName
-$password = ConvertTo-SecureString -AsPlainText $_Admincreds_Password -Force
-$Cred = New-Object System.Management.Automation.PSCredential ($username, $password)
+#$username = $AdmincredsUserName
+#$password = ConvertTo-SecureString -AsPlainText $_Admincreds_Password -Force
+#$Cred = New-Object System.Management.Automation.PSCredential ($username, $password)
 
 
 
@@ -35,6 +35,6 @@ Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\C
 Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'E:'" | Set-CimInstance -Property @{DriveLetter ='Z:'}
 
 #Adds Server to Domain
-Add-Computer -DomainName infinite.local -Credential $Cred
+#Add-Computer -DomainName infinite.local -Credential $Cred
 
 
