@@ -1,14 +1,6 @@
 $servername = AZR-EdwinTestVM
 
 
-[CmdletBinding()]
-
-param 
-( 
-    [Parameter(ValuefromPipeline=$true,Mandatory=$true)] [string]$DomainName,
-    [Parameter(ValuefromPipeline=$true,Mandatory=$true)] [string]$AdmincredsUserName,
-    [Parameter(ValuefromPipeline=$true,Mandatory=$true)] [string]$_Admincreds_Password
-)
 
 $username = $AdmincredsUserName
 $password = ConvertTo-SecureString -AsPlainText $_Admincreds_Password -Force
@@ -43,8 +35,8 @@ Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\C
 Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'E:'" | Set-CimInstance -Property @{DriveLetter ='Z:'}
 
 #Adds Server to Domain
-Add-Computer -DomainName infinite.local -Credential $Cred -Restart -Force
+Add-Computer -DomainName infinite.local -Credential $Cred
 
 
 
-#Add-Computer -ComputerName Server01 -LocalCredential Server01\Admin01 -DomainName Domain02 -Credential $Cred -Restart -Force
+
