@@ -17,7 +17,7 @@ New-Item -Path 'C:\Scripts' -ItemType Directory -verbose
 Set-TimeZone -Id "Central Standard Time" -verbose
 
 #Rename Server
-Rename-Computer -NewName "$servername" -verbose
+#Rename-Computer -NewName "$servername" -verbose
 
 
 #Allows RDP
