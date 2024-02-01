@@ -34,3 +34,12 @@ Set-ItemProperty -Path REGISTRY::HKEY_LOCAL_MACHINE\Software\Microsoft\Windows\C
 
 Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'E:'" | Set-CimInstance -Property @{DriveLetter ='Z:'}
 
+
+
+#Initialize drives, Create GPT Volume with drive letter and friendly name
+
+Get-Disk -number 2  |Initialize-Disk -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter F -FriendlyName 'Database'
+
+Get-Disk -number 3  |Initialize-Disk -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter G -FriendlyName 'Backup'
+
+Get-Disk -number 4  |Initialize-Disk -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter H -FriendlyName 'Logs'
