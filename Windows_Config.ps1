@@ -38,8 +38,8 @@ Get-CimInstance -ClassName Win32_Volume -Filter "DriveLetter = 'E:'" | Set-CimIn
 
 #Initialize drives, Create GPT Volume with drive letter and friendly name
 
-Get-Disk -number 2  |Initialize-Disk -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter F -FriendlyName 'Database'
+Initialize-Disk -number 2 -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter F -FriendlyName 'Database'
 
-Get-Disk -number 3  |Initialize-Disk -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter G -FriendlyName 'Backup'
+Initialize-Disk -number 3 -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter G -FriendlyName 'Backup'
 
-Get-Disk -number 4  |Initialize-Disk -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter H -FriendlyName 'Logs'
+Initialize-Disk -number 4 -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter H -FriendlyName 'Logs'
