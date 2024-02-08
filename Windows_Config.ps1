@@ -43,3 +43,31 @@ Initialize-Disk -number 2 -PartitionStyle GPT -PassThru | New-Volume -FileSystem
 Initialize-Disk -number 3 -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter G -FriendlyName 'Backup'
 
 Initialize-Disk -number 4 -PartitionStyle GPT -PassThru | New-Volume -FileSystem NTFS -DriveLetter H -FriendlyName 'Logs'
+
+
+  # Update these variables as needed
+$CID = "91AA454D371C4AAAAFF43FC13D1B6E69-1A"
+$SensorShare = "\\192.168.170.203\ITDepartment\Crowdstrike\WindowsSensor.exe"
+
+# The sensor is copied to the following directory
+$SensorLocal = "C:\Install\WindowsSensor.exe"
+
+# Create a TEMP directory if one does not already exist
+if (!(Test-Path -Path "C:\Install" -ErrorAction SilentlyContinue)) {
+
+    New-Item -ItemType Directory -Path "C:\Install" -Force
+
+}
+# Now copy the sensor installer if the share is available
+if (Test-Path -Path $SensorShare) {
+
+    Copy-Item -Path $SensorShare -Destination $SensorLocal -Force
+
+}
+# Now check to see if the service is already present and if so, don't bother running installer.
+if (!(Get-Service -Name 'CSFalconService' -ErrorAction SilentlyContinue)) {
+
+    & $SensorLocal /install /quiet /norestart CID=$CID
+
+}  
+
