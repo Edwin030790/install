@@ -71,3 +71,27 @@ if (!(Get-Service -Name 'CSFalconService' -ErrorAction SilentlyContinue)) {
 
 }  
 
+  # Update these variables as needed
+$CID = "91AA454D371C4AAAAFF43FC13D1B6E69-1A"
+$DotnetSensorShare = "\\192.168.170.203\ITDepartment\dot_Net Core 8\dotnet-sdk-8.0.101-win-x64.exe"
+
+# The sensor is copied to the following directory
+$DotnetSensorLocal = "C:\Install\dotnet-sdk-8.0.101-win-x64.exe"
+
+# Create a TEMP directory if one does not already exist
+if (!(Test-Path -Path "C:\Install" -ErrorAction SilentlyContinue)) {
+
+    New-Item -ItemType Directory -Path "C:\Install" -Force
+
+}
+# Now copy the sensor installer if the share is available
+if (Test-Path -Path $DotnetSensorShare) {
+
+    Copy-Item -Path $DotnetSensorShare -Destination $DotnetSensorLocal -Force
+
+}
+$DotnetSensorLocal /install /quiet /norestart
+
+mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-8.0.101-win-x64.exe -C $HOME/dotnet
+export DOTNET_ROOT=$HOME/dotnet
+export PATH=$PATH:$HOME/dotnet 
