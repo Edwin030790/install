@@ -154,10 +154,12 @@ C:\Install\npp.8.6.2.Installer.x64.exe /S
 
 #WINSCP
 
- $NPSensorShare = "\\192.168.170.203\ITDepartment\WinSCP\WinSCP-6.1.2-Setup.exe"
+  # Update these variables as needed
+
+$SCPSensorShare = "\\192.168.170.203\ITDepartment\WinSCP\WinSCP-6.1.2-Setup.exe"
 
 # The sensor is copied to the following directory
-$NPSensorLocal = "C:\Install\WinSCP-6.1.2-Setup.exe"
+$SCPSensorLocal = "C:\Install\WinSCP-6.1.2-Setup.exe"
 
 # Create a TEMP directory if one does not already exist
 if (!(Test-Path -Path "C:\Install" -ErrorAction SilentlyContinue)) {
@@ -166,14 +168,15 @@ if (!(Test-Path -Path "C:\Install" -ErrorAction SilentlyContinue)) {
 
 }
 # Now copy the sensor installer if the share is available
-if (Test-Path -Path $NPSensorShare) {
+if (Test-Path -Path $SCPSensorShare) {
 
-    Copy-Item -Path $NPSensorShare -Destination $NPSensorLocal -Force
+    Copy-Item -Path $SCPSensorShare -Destination $SCPSensorLocal -Force
 
 }
 
 
-C:\Install\WinSCP-6.1.2-Setup.exe 
+C:\Install\WinSCP-6.1.2-Setup.exe /ALLUSERS /VERYSILENT /NORESTART 
+
 
 
 
