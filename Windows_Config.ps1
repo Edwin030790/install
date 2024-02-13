@@ -1,4 +1,4 @@
-$servername = "AZR-EdwinTestVM"
+#$servername = "AZR-EdwinTestVM"
 
 
 
