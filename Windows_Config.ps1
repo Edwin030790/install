@@ -1,4 +1,4 @@
-#$servername = "AZR-EdwinTestVM"
+ #$servername = "AZR-EdwinTestVM"
 
 
 
@@ -92,11 +92,11 @@ if (Test-Path -Path $DotnetSensorShare) {
     Copy-Item -Path $DotnetSensorShare -Destination $DotnetSensorLocal -Force
 
 }
-$DotnetSensorLocal /install /quiet /norestart
+C:\Install\dotnet-sdk-8.0.101-win-x64.exel /install /quiet /norestart
 
-mkdir -p $HOME/dotnet && tar zxf dotnet-sdk-8.0.101-win-x64.exe -C $HOME/dotnet
+mkdir -p $HOME/dotnet -and tar zxf dotnet-sdk-8.0.101-win-x64.exe -C $HOME/dotnet
 export DOTNET_ROOT=$HOME/dotnet
-export PATH=$PATH:$HOME/dotnet 
+export PATH='$PATH:$HOME/dotnet' 
 
 
 
@@ -181,4 +181,4 @@ C:\Install\WinSCP-6.1.2-Setup.exe /ALLUSERS /VERYSILENT /NORESTART
 
 
 
-
+ 
