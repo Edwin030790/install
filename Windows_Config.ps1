@@ -126,6 +126,30 @@ C:\Install\FileZilla_3.63.1_win64-setup.exe /S
 
 
 
+#Notepad+
+
+  # Update these variables as needed
+
+$NPSensorShare = "\\192.168.170.203\ITDepartment\Notepad++\npp.8.6.2.Installer.x64.exe"
+
+# The sensor is copied to the following directory
+$NPSensorLocal = "C:\Install\npp.8.6.2.Installer.x64.exe"
+
+# Create a TEMP directory if one does not already exist
+if (!(Test-Path -Path "C:\Install" -ErrorAction SilentlyContinue)) {
+
+    New-Item -ItemType Directory -Path "C:\Install" -Force
+
+}
+# Now copy the sensor installer if the share is available
+if (Test-Path -Path $NPSensorShare) {
+
+    Copy-Item -Path $NPSensorShare -Destination $NPSensorLocal -Force
+
+}
+
+C:\Install\npp.8.6.2.Installer.x64.exe /S  
+
 
 
 #WINSCP
